@@ -16,6 +16,7 @@
         android:ems="10"
         android:hint="email"
         android:inputType="textPersonName"
+        android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +31,7 @@
         android:background="@color/colorPrimary"
         android:onClick="loginLoginBtnClicked"
         android:text="Login"
-        android:textColor="@android:color/primary_text_dark"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordTxt" />
@@ -45,6 +46,7 @@
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
+        android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginEmailTxt" />
@@ -59,7 +61,7 @@
         android:background="@color/colorPrimary"
         android:onClick="loginCreateUserBtnClicked"
         android:text="Sign up here"
-        android:textColor="@android:color/primary_text_dark"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginCreateAccountTxt" />
@@ -72,6 +74,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:text="Don't have an account?"
+        android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
