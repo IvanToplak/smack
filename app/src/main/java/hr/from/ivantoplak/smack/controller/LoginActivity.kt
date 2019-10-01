@@ -1,9 +1,10 @@
-package hr.from.ivantoplak.smack
+package hr.from.ivantoplak.smack.controller
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import hr.from.ivantoplak.smack.R
 
 class LoginActivity : AppCompatActivity() {
 

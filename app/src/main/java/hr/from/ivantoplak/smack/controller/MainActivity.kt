@@ -1,4 +1,4 @@
-package hr.from.ivantoplak.smack
+package hr.from.ivantoplak.smack.controller
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import hr.from.ivantoplak.smack.R
 
 class MainActivity : AppCompatActivity() {
 

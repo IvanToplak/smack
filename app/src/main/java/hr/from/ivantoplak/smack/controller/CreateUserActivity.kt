@@ -1,17 +1,19 @@
-package hr.from.ivantoplak.smack
+package hr.from.ivantoplak.smack.controller
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import hr.from.ivantoplak.smack.R
+import hr.from.ivantoplak.smack.services.AuthService
 import hr.from.ivantoplak.smack.utils.*
 import kotlinx.android.synthetic.main.activity_create_user.*
 import kotlin.random.Random
 
 class CreateUserActivity : AppCompatActivity() {
 
-    var userAvatar = AVATAR_DEFAULT_DRAWABLE
-    var avatarColor = AVATAR_DEFAULT_BACKGROUND_COLOR
+    private var userAvatar = AVATAR_DEFAULT_DRAWABLE
+    private var avatarColor = AVATAR_DEFAULT_BACKGROUND_COLOR
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +45,11 @@ class CreateUserActivity : AppCompatActivity() {
     }
 
     fun createUserBtnClicked(view: View) {
-
+        //TODO replace dummy values with real ones
+        AuthService.registerUser(
+            this,
+            "j@j1.com",
+            "123456"
+        ) { completed -> println("###Completed: $completed") }
     }
 }
