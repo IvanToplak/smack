@@ -45,11 +45,23 @@ class CreateUserActivity : AppCompatActivity() {
     }
 
     fun createUserBtnClicked(view: View) {
-        //TODO replace dummy values with real ones
+
+        val email = createUserEmailTxt.text.toString()
+        val password = createUserPasswordTxt.text.toString()
+
         AuthService.registerUser(
             this,
-            "j@j1.com",
-            "123456"
-        ) { completed -> println("###Completed: $completed") }
+            email,
+            password
+        ) { registerSuccess ->
+            if (registerSuccess) {
+                AuthService.loginUser(this, email, password) {loginSuccess ->
+                    if (loginSuccess) {
+                        println(AuthService.userEmail)
+                        println(AuthService.authToken)
+                    }
+                }
+            }
+        }
     }
 }
