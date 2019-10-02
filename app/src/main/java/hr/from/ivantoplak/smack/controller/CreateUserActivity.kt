@@ -1,9 +1,12 @@
 package hr.from.ivantoplak.smack.controller
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import hr.from.ivantoplak.smack.R
 import hr.from.ivantoplak.smack.services.AuthService
 import hr.from.ivantoplak.smack.utils.*
@@ -18,6 +21,7 @@ class CreateUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_user)
+        createUserSpinner.visibility = View.INVISIBLE
     }
 
     fun generateUserAvatar(view: View) {
@@ -46,9 +50,21 @@ class CreateUserActivity : AppCompatActivity() {
 
     fun createUserBtnClicked(view: View) {
 
+        enableSpinner(true)
         val userName = createUserUserNameTxt.text.toString()
         val email = createUserEmailTxt.text.toString()
         val password = createUserPasswordTxt.text.toString()
+
+        //TODO - add validation for email and password
+        if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(
+                this,
+                MAKE_SURE_USER_NAME_EMAIL_AND_PASSWORD_ARE_FILLED_IN,
+                Toast.LENGTH_LONG
+            ).show()
+            enableSpinner(false)
+            return
+        }
 
         AuthService.registerUser(
             this,
@@ -66,12 +82,39 @@ class CreateUserActivity : AppCompatActivity() {
                             avatarColor
                         ) { createSuccess ->
                             if (createSuccess) {
+                                //inform receivers that user is logged in
+                                val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
+                                LocalBroadcastManager.getInstance(this)
+                                    .sendBroadcast(userDataChange)
+
+                                enableSpinner(false)
                                 finish()
+                            } else {
+                                errorToast()
                             }
                         }
+                    } else {
+                        errorToast()
                     }
                 }
+            } else {
+                errorToast()
             }
         }
+    }
+
+    private fun errorToast() {
+        Toast.makeText(
+            this, SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN,
+            Toast.LENGTH_LONG
+        ).show()
+        enableSpinner(false)
+    }
+
+    private fun enableSpinner(enable: Boolean) {
+        createUserSpinner.visibility = if (enable) View.VISIBLE else View.INVISIBLE
+        createUserBtn.isEnabled = !enable
+        createUserAvatarImageView.isEnabled = !enable
+        avatarBackgroundColorBtn.isEnabled = !enable
     }
 }

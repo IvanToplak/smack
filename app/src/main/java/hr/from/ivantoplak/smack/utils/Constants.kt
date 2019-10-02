@@ -34,3 +34,8 @@ const val JSON = "JSON"
 const val EXC = "EXC"
 const val AUTHORIZATION = "Authorization"
 const val BEARER = "Bearer"
+const val SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN = "Something went wrong, please try again."
+const val MAKE_SURE_USER_NAME_EMAIL_AND_PASSWORD_ARE_FILLED_IN = "Make sure user name, email, and password are filled in."
+
+//Broadcast Constants
+const val BROADCAST_USER_DATA_CHANGE = "BROADCAST_USER_DATA_CHANGE"
