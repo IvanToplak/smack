@@ -1,7 +1,9 @@
 package hr.from.ivantoplak.smack.services
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
@@ -157,6 +159,50 @@ object AuthService {
 
         //add the request to request queue
         Volley.newRequestQueue(context).add(createRequest)
+    }
+
+    /**
+     * Find by email calls "user/byEmail" endpoint to get a user from database (users collection).
+     *
+     * @param context Context - who called this method
+     * @param complete Code to run when the response arrives
+     */
+    fun findUserByEmail(context: Context, complete: (Boolean) -> Unit) {
+        val findUserRequest =
+            object : JsonObjectRequest(Method.GET, "$URL_GET_USER$userEmail", null,
+                Response.Listener { response ->
+                    try {
+                        UserDataService.name = response.getString(NAME)
+                        UserDataService.email = response.getString(EMAIL)
+                        UserDataService.avatarName = response.getString(AVATAR_NAME)
+                        UserDataService.avatarColor = response.getString(AVATAR_COLOR)
+                        UserDataService.id = response.getString(MONGODB_ID)
+
+                        val userDataChange = Intent(BROADCAST_USER_DATA_CHANGE)
+                        LocalBroadcastManager.getInstance(context).sendBroadcast(userDataChange)
+                        complete(true)
+                    } catch (e: JSONException) {
+                        Log.e(JSON, "$EXC: ${e.localizedMessage}")
+                        complete(false)
+                    }
+                },
+                Response.ErrorListener { error ->
+                    Log.e(ERROR, "$COULD_NOT_FIND_USER: $error")
+                    complete(false)
+                }) {
+                override fun getBodyContentType(): String {
+                    return CONTENT_TYPE_APPLICATION_JSON_CHARSET_UTF8
+                }
+
+                override fun getHeaders(): MutableMap<String, String> {
+                    return mutableMapOf<String, String>().apply {
+                        this[AUTHORIZATION] = "$BEARER $authToken"
+                    }
+                }
+            }
+
+        //add the request to request queue
+        Volley.newRequestQueue(context).add(findUserRequest)
     }
 
     /**

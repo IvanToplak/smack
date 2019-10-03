@@ -76,9 +76,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loginBtnNavHeaderClicked(view: View) {
-
         if (AuthService.isLoggedIn) {
-            //log out
             UserDataService.logout()
             resetNavHeaderLayout()
         } else {
@@ -96,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetNavHeaderLayout() {
-        userNameNavHeader.text = LOGIN
+        userNameNavHeader.text = ""
         userEmailNavHeader.text = ""
         userImageNavHeader.setImageResource(R.drawable.profiledefault)
         userImageNavHeader.setBackgroundColor(Color.TRANSPARENT)

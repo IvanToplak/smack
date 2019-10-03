@@ -11,10 +11,12 @@ const val AVATAR_DRAWABLE_PREFIX_LIGHT = "light"
 const val AVATAR_DRAWABLE_PREFIX_DARK = "dark"
 const val COLOR_DEFAULT_ALPHA = "1"
 
+//API URLs
 const val BASE_URL = "https://it-smack-chat.herokuapp.com/v1/"
 const val URL_REGISTER = "${BASE_URL}account/register"
 const val URL_LOGIN = "${BASE_URL}account/login"
 const val URL_CREATE_USER = "${BASE_URL}user/add"
+const val URL_GET_USER = "${BASE_URL}user/byEmail/"
 
 const val EMAIL = "email"
 const val PASSWORD = "password"
@@ -27,6 +29,7 @@ const val ERROR = "ERROR"
 const val COULD_NOT_REGISTER_USER = "Could not register user"
 const val COULD_NOT_LOGIN_USER = "Could not login user"
 const val COULD_NOT_ADD_USER = "Could not add user"
+const val COULD_NOT_FIND_USER = "Could not find user"
 const val CONTENT_TYPE_APPLICATION_JSON_CHARSET_UTF8 = "application/json; charset=utf-8"
 const val USER = "user"
 const val TOKEN = "token"
@@ -39,5 +42,6 @@ const val SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN = "Something went wrong, please 
 const val MAKE_SURE_USER_NAME_EMAIL_AND_PASSWORD_ARE_FILLED_IN = "Make sure user name, email, and password are filled in."
 const val LOGOUT = "Logout"
 const val LOGIN = "Login"
+
 //Broadcast Constants
 const val BROADCAST_USER_DATA_CHANGE = "BROADCAST_USER_DATA_CHANGE"
