@@ -49,7 +49,6 @@ class CreateUserActivity : AppCompatActivity() {
     }
 
     fun createUserBtnClicked(view: View) {
-
         enableSpinner(true)
         val userName = createUserUserNameTxt.text.toString()
         val email = createUserEmailTxt.text.toString()
@@ -90,25 +89,20 @@ class CreateUserActivity : AppCompatActivity() {
                                 enableSpinner(false)
                                 finish()
                             } else {
-                                errorToast()
+                                errorToast(this)
+                                enableSpinner(false)
                             }
                         }
                     } else {
-                        errorToast()
+                        errorToast(this)
+                        enableSpinner(false)
                     }
                 }
             } else {
-                errorToast()
+                errorToast(this)
+                enableSpinner(false)
             }
         }
-    }
-
-    private fun errorToast() {
-        Toast.makeText(
-            this, SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN,
-            Toast.LENGTH_LONG
-        ).show()
-        enableSpinner(false)
     }
 
     private fun enableSpinner(enable: Boolean) {
