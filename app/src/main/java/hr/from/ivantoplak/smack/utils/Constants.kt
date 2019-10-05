@@ -13,6 +13,7 @@ const val COLOR_DEFAULT_ALPHA = "1"
 
 //API URLs
 const val BASE_URL = "https://it-smack-chat.herokuapp.com/v1/"
+const val SOCKET_URL = "https://it-smack-chat.herokuapp.com/"
 const val URL_REGISTER = "${BASE_URL}account/register"
 const val URL_LOGIN = "${BASE_URL}account/login"
 const val URL_CREATE_USER = "${BASE_URL}user/add"
@@ -39,10 +40,17 @@ const val SCANNER = "SCANNER"
 const val AUTHORIZATION = "Authorization"
 const val BEARER = "Bearer"
 const val SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN = "Something went wrong, please try again."
-const val MAKE_SURE_USER_NAME_EMAIL_AND_PASSWORD_ARE_FILLED_IN = "Make sure user name, email, and password are filled in."
+const val MAKE_SURE_USER_NAME_EMAIL_AND_PASSWORD_ARE_FILLED_IN =
+    "Make sure user name, email, and password are filled in."
 const val MAKE_SURE_EMAIL_AND_PASSWORD_ARE_FILLED_IN = "Make sure email and password are filled in."
 const val LOGOUT = "Logout"
 const val LOGIN = "Login"
+const val ADD = "Add"
+const val CANCEL = "Cancel"
+
+//Socket Constants
+const val CHANNEL_CREATED = "channelCreated"
+const val NEW_CHANNEL = "newChannel"
 
 //Broadcast Constants
 const val BROADCAST_USER_DATA_CHANGE = "BROADCAST_USER_DATA_CHANGE"

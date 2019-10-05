@@ -7,22 +7,27 @@ import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import hr.from.ivantoplak.smack.R
+import hr.from.ivantoplak.smack.model.Channel
 import hr.from.ivantoplak.smack.services.AuthService
+import hr.from.ivantoplak.smack.services.MessageService
 import hr.from.ivantoplak.smack.services.UserDataService
-import hr.from.ivantoplak.smack.utils.BROADCAST_USER_DATA_CHANGE
-import hr.from.ivantoplak.smack.utils.LOGIN
-import hr.from.ivantoplak.smack.utils.LOGOUT
-import hr.from.ivantoplak.smack.utils.RES_DRAWABLE
+import hr.from.ivantoplak.smack.utils.*
+import io.socket.client.IO
+import io.socket.emitter.Emitter
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private val socket = IO.socket(SOCKET_URL)
 
     private val userDataChangeReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -42,11 +47,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private val onNewChannel = Emitter.Listener { args ->
+        runOnUiThread {
+            val channelName = args[0] as String
+            val channelDescription = args[1] as String
+            val channelId = args[2] as String
+
+            val newChannel = Channel(channelName, channelDescription, channelId)
+            MessageService.channels.add(newChannel)
+
+            println(newChannel.name)
+            println(newChannel.description)
+            println(newChannel.id)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        socket.connect()
+        socket.on(CHANNEL_CREATED, onNewChannel)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
@@ -58,6 +80,10 @@ class MainActivity : AppCompatActivity() {
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         //registering receiver to receive user login event
         LocalBroadcastManager.getInstance(this).registerReceiver(
@@ -75,6 +101,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        socket.disconnect()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(userDataChangeReceiver)
+    }
+
     fun loginBtnNavHeaderClicked(view: View) {
         if (AuthService.isLoggedIn) {
             UserDataService.logout()
@@ -86,11 +118,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addChannelClicked(view: View) {
+        if (AuthService.isLoggedIn) {
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.add_channel_dialog, null)
+            builder.setView(dialogView)
+                .setPositiveButton(ADD) { dialog, which ->
+                    val nameTextField = dialogView.findViewById<EditText>(R.id.addChannelNameTxt)
+                    val descTextField =
+                        dialogView.findViewById<EditText>(R.id.addChannelDescriptionTxt)
+                    val channelName = nameTextField.text.toString()
+                    val channelDesc = descTextField.text.toString()
 
+                    //create channel
+                    socket.emit(NEW_CHANNEL, channelName, channelDesc)
+                }
+                .setNegativeButton(CANCEL) { dialog, which ->
+                }
+                .show()
+        }
     }
 
     fun sendMessageBtnClicked(view: View) {
-
+        hideKeyboard(view.context, currentFocus)
     }
 
     private fun resetNavHeaderLayout() {
