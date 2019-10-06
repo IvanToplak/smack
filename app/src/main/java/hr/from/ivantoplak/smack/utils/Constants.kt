@@ -58,3 +58,11 @@ const val NEW_CHANNEL = "newChannel"
 
 //Broadcast Constants
 const val BROADCAST_USER_DATA_CHANGE = "BROADCAST_USER_DATA_CHANGE"
+
+
+//Shared Preferences Constants
+const val PREFS_FILE = "prefs"
+const val IS_LOGGED_IN = "isLoggedIn"
+const val AUTH_TOKEN = "authToken"
+const val USER_EMAIL = "userEmail"
+

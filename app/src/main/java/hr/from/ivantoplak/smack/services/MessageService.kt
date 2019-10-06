@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.Volley
+import hr.from.ivantoplak.smack.controller.App
 import hr.from.ivantoplak.smack.model.Channel
 import hr.from.ivantoplak.smack.utils.*
 import org.json.JSONException
@@ -50,12 +50,12 @@ object MessageService {
 
             override fun getHeaders(): MutableMap<String, String> {
                 return mutableMapOf<String, String>().apply {
-                    this[AUTHORIZATION] = "$BEARER ${AuthService.authToken}"
+                    this[AUTHORIZATION] = "$BEARER ${App.prefs.authToken}"
                 }
             }
         }
 
         //add the request to request queue
-        Volley.newRequestQueue(context).add(channelsRequest)
+        App.prefs.requestQueue.add(channelsRequest)
     }
 }

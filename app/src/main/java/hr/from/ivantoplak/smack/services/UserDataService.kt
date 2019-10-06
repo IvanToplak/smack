@@ -2,6 +2,7 @@ package hr.from.ivantoplak.smack.services
 
 import android.graphics.Color
 import android.util.Log
+import hr.from.ivantoplak.smack.controller.App
 import hr.from.ivantoplak.smack.utils.EXC
 import hr.from.ivantoplak.smack.utils.SCANNER
 import java.util.*
@@ -49,8 +50,8 @@ object UserDataService {
         avatarName = ""
         email = ""
         name = ""
-        AuthService.authToken = ""
-        AuthService.userEmail = ""
-        AuthService.isLoggedIn = false
+        App.prefs.authToken = ""
+        App.prefs.userEmail = ""
+        App.prefs.isLoggedIn = false
     }
 }
