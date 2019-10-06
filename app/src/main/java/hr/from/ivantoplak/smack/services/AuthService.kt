@@ -127,6 +127,7 @@ object AuthService {
         val createRequest = object : JsonObjectRequest(Method.POST, URL_CREATE_USER, null,
             Response.Listener { response ->
                 try {
+                    //TODO use GSON or Jackson to deserialize JSON
                     UserDataService.name = response.getString(NAME)
                     UserDataService.email = response.getString(EMAIL)
                     UserDataService.avatarName = response.getString(AVATAR_NAME)
@@ -172,6 +173,7 @@ object AuthService {
             object : JsonObjectRequest(Method.GET, "$URL_GET_USER$userEmail", null,
                 Response.Listener { response ->
                     try {
+                        //TODO use GSON or Jackson to deserialize JSON
                         UserDataService.name = response.getString(NAME)
                         UserDataService.email = response.getString(EMAIL)
                         UserDataService.avatarName = response.getString(AVATAR_NAME)

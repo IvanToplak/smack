@@ -17,9 +17,15 @@ fun errorToast(context: Context) {
     ).show()
 }
 
+/**
+ * Hides keyboard if it is shown on the screen.
+ *
+ * @param context Context - who called this method
+ * @param view View in focus
+ */
 fun hideKeyboard(context: Context, view: View?) {
     val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    if (inputManager.isAcceptingText) {
-        inputManager.hideSoftInputFromWindow(view?.windowToken, 0)
+    if (inputManager.isAcceptingText && view != null) {
+        inputManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
