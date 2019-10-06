@@ -18,13 +18,11 @@ object AuthService {
      * User registration calls "account/register" endpoint to create a user in the database
      * (accounts collection).
      *
-     * @param context Context - who called this method
      * @param email User's email
      * @param password User's password
      * @param complete Code to run when the response arrives
      */
     fun registerUser(
-        context: Context,
         email: String,
         password: String,
         complete: (Boolean) -> Unit
@@ -56,13 +54,11 @@ object AuthService {
     /**
      * User login calls "account/login" endpoint to login a user and get the token.
      *
-     * @param context Context - who called this method
      * @param email User's email
      * @param password User's password
      * @param complete Code to run when the response arrives
      */
     fun loginUser(
-        context: Context,
         email: String,
         password: String,
         complete: (Boolean) -> Unit
@@ -102,7 +98,6 @@ object AuthService {
     /**
      * Create user calls "user/add" endpoint to create a user in the database (users collection).
      *
-     * @param context Context - who called this method
      * @param name User's name
      * @param email User's email
      * @param avatarName Avatar name (bitmap name)
@@ -110,7 +105,6 @@ object AuthService {
      * @param complete Code to run when the response arrives
      */
     fun createUser(
-        context: Context,
         name: String,
         email: String,
         avatarName: String,

@@ -10,6 +10,7 @@ const val AVATAR_DEFAULT_BACKGROUND_COLOR = "[0.5, 0.5, 0.5, 1]"
 const val AVATAR_DRAWABLE_PREFIX_LIGHT = "light"
 const val AVATAR_DRAWABLE_PREFIX_DARK = "dark"
 const val COLOR_DEFAULT_ALPHA = "1"
+const val PLEASE_LOG_IN = "Please Log In"
 
 //API URLs
 const val BASE_URL = "https://it-smack-chat.herokuapp.com/v1/"

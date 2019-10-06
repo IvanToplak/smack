@@ -1,6 +1,5 @@
 package hr.from.ivantoplak.smack.services
 
-import android.content.Context
 import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
@@ -16,10 +15,9 @@ object MessageService {
     /**
      * Get channels calls "/channels" endpoint to get all channels from database (channels collection)
      *
-     * @param context Context - who called this method
      * @param complete Code to run when the response arrives
      */
-    fun getChannels(context: Context, complete: (Boolean) -> Unit) {
+    fun getChannels(complete: (Boolean) -> Unit) {
 
         val channelsRequest = object : JsonArrayRequest(Method.GET, URL_GET_CHANNELS, null,
             Response.Listener { response ->
