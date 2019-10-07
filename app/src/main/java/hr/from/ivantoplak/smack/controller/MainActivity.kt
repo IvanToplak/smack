@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import hr.from.ivantoplak.smack.R
 import hr.from.ivantoplak.smack.model.Channel
+import hr.from.ivantoplak.smack.model.Message
 import hr.from.ivantoplak.smack.services.AuthService
 import hr.from.ivantoplak.smack.services.MessageService
 import hr.from.ivantoplak.smack.services.UserDataService
@@ -63,14 +64,44 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val onNewChannel = Emitter.Listener { args ->
-        runOnUiThread {
-            val channelName = args[0] as String
-            val channelDescription = args[1] as String
-            val channelId = args[2] as String
+        if (App.prefs.isLoggedIn) {
+            runOnUiThread {
+                val channelName = if (args[0] is String) args[0] as String else ""
+                val channelDescription = if (args[1] is String) args[1] as String else ""
+                val channelId = if (args[2] is String) args[2] as String else ""
 
-            val newChannel = Channel(channelName, channelDescription, channelId)
-            MessageService.channels.add(newChannel)
-            channelAdapter.notifyDataSetChanged()
+                val newChannel = Channel(channelName, channelDescription, channelId)
+                MessageService.channels.add(newChannel)
+                channelAdapter.notifyDataSetChanged()
+            }
+        }
+    }
+
+    private val onNewMessage = Emitter.Listener { args ->
+        if (App.prefs.isLoggedIn) {
+            runOnUiThread {
+                val channelId = if (args[2] is String) args[2] as String else ""
+                if (channelId == selectedChannel?.id) {
+                    val messageBody = if (args[0] is String) args[0] as String else ""
+                    val userName = if (args[3] is String) args[3] as String else ""
+                    val userAvatar = if (args[4] is String) args[4] as String else ""
+                    val userAvatarColor = if (args[5] is String) args[5] as String else ""
+                    val id = if (args[6] is String) args[6] as String else ""
+                    val timeStamp = if (args[7] is String) args[7] as String else ""
+
+                    val newMessage = Message(
+                        messageBody,
+                        userName,
+                        channelId,
+                        userAvatar,
+                        userAvatarColor,
+                        id,
+                        timeStamp
+                    )
+
+                    MessageService.messages.add(newMessage)
+                }
+            }
         }
     }
 
@@ -79,8 +110,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        //opening socket connection and registering event listeners
         socket.connect()
         socket.on(CHANNEL_CREATED, onNewChannel)
+        socket.on(MESSAGE_CREATED, onNewMessage)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(
@@ -158,7 +192,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun sendMessageBtnClicked(view: View) {
-        hideKeyboard(view.context, currentFocus)
+        if (App.prefs.isLoggedIn && messageTextField.text.isNotBlank() && selectedChannel != null) {
+            val userId = UserDataService.id
+            val channelId = selectedChannel?.id
+
+            //create new message
+            socket.emit(
+                NEW_MESSAGE,
+                messageTextField.text.toString(),
+                userId,
+                channelId,
+                UserDataService.name,
+                UserDataService.avatarName,
+                UserDataService.avatarColor
+            )
+            messageTextField.text.clear()
+            hideKeyboard(view.context, currentFocus)
+        }
     }
 
     private fun resetNavHeaderLayout() {
@@ -167,7 +217,6 @@ class MainActivity : AppCompatActivity() {
         userImageNavHeader.setImageResource(R.drawable.profiledefault)
         userImageNavHeader.setBackgroundColor(Color.TRANSPARENT)
         loginBtnNavHeader.text = LOGIN
-        MessageService.channels.clear()
         channelAdapter.clear()
         mainChannelName.text = PLEASE_LOG_IN
     }
@@ -180,5 +229,14 @@ class MainActivity : AppCompatActivity() {
 
     fun updateWithChannel() {
         mainChannelName.text = "#${selectedChannel?.name}"
+        if (selectedChannel != null) {
+            MessageService.getMessages(selectedChannel!!.id) { completed ->
+                if (completed) {
+                    for (message in MessageService.messages) {
+                        println(message)
+                    }
+                }
+            }
+        }
     }
 }

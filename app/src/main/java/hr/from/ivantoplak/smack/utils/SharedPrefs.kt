@@ -2,6 +2,7 @@ package hr.from.ivantoplak.smack.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 
 class SharedPrefs(context: Context) {
@@ -17,8 +18,8 @@ class SharedPrefs(context: Context) {
         set(value) = prefs.edit().putString(AUTH_TOKEN, value).apply()
 
     var userEmail: String
-        get() = prefs.getString(USER_EMAIL, "") as String
+        get() = prefs.getString(USER_EMAIL, "") as String //Why I had to cast to String?
         set(value) = prefs.edit().putString(USER_EMAIL, value).apply()
 
-    val requestQueue = Volley.newRequestQueue(context)
+    val requestQueue: RequestQueue = Volley.newRequestQueue(context)
 }

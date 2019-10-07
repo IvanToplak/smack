@@ -20,6 +20,7 @@ const val URL_LOGIN = "${BASE_URL}account/login"
 const val URL_CREATE_USER = "${BASE_URL}user/add"
 const val URL_GET_USER = "${BASE_URL}user/byEmail/"
 const val URL_GET_CHANNELS = "${BASE_URL}channel/"
+const val URL_GET_MESSAGES = "${BASE_URL}message/byChannel/"
 
 //JSON field names
 const val EMAIL = "email"
@@ -29,6 +30,12 @@ const val AVATAR_NAME = "avatarName"
 const val AVATAR_COLOR = "avatarColor"
 const val MONGODB_ID = "_id"
 const val DESCRIPTION = "description"
+const val MESSAGE_BODY = "messageBody"
+const val CHANNEL_ID = "channelId"
+const val USER_NAME = "userName"
+const val USER_AVATAR = "userAvatar"
+const val USER_AVATAR_COLOR = "userAvatarColor"
+const val TIME_STAMP = "timeStamp"
 
 const val ERROR = "ERROR"
 const val COULD_NOT_REGISTER_USER = "Could not register user"
@@ -55,7 +62,9 @@ const val CANCEL = "Cancel"
 
 //Socket Constants
 const val CHANNEL_CREATED = "channelCreated"
+const val MESSAGE_CREATED = "messageCreated"
 const val NEW_CHANNEL = "newChannel"
+const val NEW_MESSAGE = "newMessage"
 
 //Broadcast Constants
 const val BROADCAST_USER_DATA_CHANGE = "BROADCAST_USER_DATA_CHANGE"
