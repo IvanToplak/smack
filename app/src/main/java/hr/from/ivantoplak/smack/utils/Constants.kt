@@ -10,7 +10,18 @@ const val AVATAR_DEFAULT_BACKGROUND_COLOR = "[0.5, 0.5, 0.5, 1]"
 const val AVATAR_DRAWABLE_PREFIX_LIGHT = "light"
 const val AVATAR_DRAWABLE_PREFIX_DARK = "dark"
 const val COLOR_DEFAULT_ALPHA = "1"
+const val CONTENT_TYPE_APPLICATION_JSON_CHARSET_UTF8 = "application/json; charset=utf-8"
+const val AUTHORIZATION = "Authorization"
+const val BEARER = "Bearer"
+const val ISO_DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+const val CUSTOM_DATE_TIME_PATTERN = "E, h:mm a"
+
+//TODO move to resource strings
 const val PLEASE_LOG_IN = "Please Log In"
+const val LOGOUT = "Logout"
+const val LOGIN = "Login"
+const val ADD = "Add"
+const val CANCEL = "Cancel"
 
 //API URLs
 const val BASE_URL = "https://it-smack-chat.herokuapp.com/v1/"
@@ -36,29 +47,29 @@ const val USER_NAME = "userName"
 const val USER_AVATAR = "userAvatar"
 const val USER_AVATAR_COLOR = "userAvatarColor"
 const val TIME_STAMP = "timeStamp"
-
-const val ERROR = "ERROR"
-const val COULD_NOT_REGISTER_USER = "Could not register user"
-const val COULD_NOT_LOGIN_USER = "Could not login user"
-const val COULD_NOT_ADD_USER = "Could not add user"
-const val COULD_NOT_FIND_USER = "Could not find user"
-const val COULD_NOT_FIND_CHANNELS = "Could not find channels"
-const val CONTENT_TYPE_APPLICATION_JSON_CHARSET_UTF8 = "application/json; charset=utf-8"
 const val USER = "user"
 const val TOKEN = "token"
+
+//Error Tags
+const val ERROR = "ERROR"
 const val JSON = "JSON"
 const val EXC = "EXC"
 const val SCANNER = "SCANNER"
-const val AUTHORIZATION = "Authorization"
-const val BEARER = "Bearer"
+const val PARSE = "PARSE"
+
+//Error Messages
+const val COULD_NOT_REGISTER_USER = "Could not register user."
+const val COULD_NOT_LOGIN_USER = "Could not login user."
+const val COULD_NOT_ADD_USER = "Could not add user."
+const val COULD_NOT_FIND_USER = "Could not find user."
+const val COULD_NOT_FIND_CHANNELS = "Could not find channels."
+const val CANNOT_PARSE_DATE = "Cannot parse date."
+
+//TODO move to resource strings
 const val SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN = "Something went wrong, please try again."
 const val MAKE_SURE_USER_NAME_EMAIL_AND_PASSWORD_ARE_FILLED_IN =
     "Make sure user name, email, and password are filled in."
 const val MAKE_SURE_EMAIL_AND_PASSWORD_ARE_FILLED_IN = "Make sure email and password are filled in."
-const val LOGOUT = "Logout"
-const val LOGIN = "Login"
-const val ADD = "Add"
-const val CANCEL = "Cancel"
 
 //Socket Constants
 const val CHANNEL_CREATED = "channelCreated"
@@ -68,7 +79,6 @@ const val NEW_MESSAGE = "newMessage"
 
 //Broadcast Constants
 const val BROADCAST_USER_DATA_CHANGE = "BROADCAST_USER_DATA_CHANGE"
-
 
 //Shared Preferences Constants
 const val PREFS_FILE = "prefs"

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/messageUserImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/dark11" />
+
+    <TextView
+        android:id="@+id/messageUserNameLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/messageUserImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ginger Baker" />
+
+    <TextView
+        android:id="@+id/messageTimestampLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/messageUserNameLbl"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Mar 11, 10:30 PM" />
+
+    <TextView
+        android:id="@+id/messageBodyLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/messageUserImage"
+        app:layout_constraintTop_toBottomOf="@+id/messageTimestampLbl"
+        tools:text="Spicy jalapeno bacon ipsum dolor amet flank jerky shoulder tri-tip, sirloin ribeye frankfurter pork belly ball tip prosciutto tenderloin tongue pork loin. Porchetta sirloin chuck cow, turducken drumstick tail. Doner drumstick leberkas beef ribs shoulder tenderloin alcatra ham filet mignon cupim bacon. Filet mignon tenderloin cow picanha, boudin ham hock brisket pork jowl pork loin cupim hamburger ham. Ribeye drumstick ground round, buffalo tenderloin corned beef ham cow cupim landjaeger biltong short ribs jerky t-bone tongue. Spare ribs chuck swine shank drumstick meatloaf bresaola tail landjaeger picanha fatback sausage ball tip kevin. Pig turkey pastrami short ribs.  Pancetta pork sausage venison jowl strip steak ribeye ham flank corned beef bresaola salami ball tip. Short ribs picanha chicken buffalo beef ribs. Shoulder leberkas drumstick tongue andouille ham hock. Pancetta flank bresaola sirloin, leberkas jerky shoulder fatback swine. Pork beef pastrami tri-tip, beef ribs bacon shankle. Leberkas corned beef andouille pork chop turducken drumstick jowl strip steak pork belly short loin venison sausage buffalo. Biltong ground round sirloin pork loin pork.  Capicola picanha cupim short ribs, ball tip cow tri-tip t-bone buffalo porchetta pork pastrami. Jowl pork loin ham hock alcatra ball tip sirloin buffalo boudin brisket tenderloin spare ribs cupim jerky kevin. Tail tongue chicken rump andouille kielbasa. Fatback burgdoggen pastrami, pork chop shoulder jerky flank ribeye sausage pork loin salami chuck beef." />
+</androidx.constraintlayout.widget.ConstraintLayout>

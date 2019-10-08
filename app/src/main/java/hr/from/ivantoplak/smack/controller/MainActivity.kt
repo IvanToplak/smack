@@ -16,7 +16,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import hr.from.ivantoplak.smack.R
+import hr.from.ivantoplak.smack.adapters.MessageAdapter
 import hr.from.ivantoplak.smack.model.Channel
 import hr.from.ivantoplak.smack.model.Message
 import hr.from.ivantoplak.smack.services.AuthService
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private val socket = IO.socket(SOCKET_URL)
     lateinit var channelAdapter: ArrayAdapter<Channel>
+    private lateinit var messageAdapter: MessageAdapter
     var selectedChannel: Channel? = null
 
     private val userDataChangeReceiver = object : BroadcastReceiver() {
@@ -100,6 +103,8 @@ class MainActivity : AppCompatActivity() {
                     )
 
                     MessageService.messages.add(newMessage)
+                    messageAdapter.notifyDataSetChanged()
+                    messageListView.scrollToPosition(messageAdapter.itemCount - 1)
                 }
             }
         }
@@ -162,6 +167,8 @@ class MainActivity : AppCompatActivity() {
 
     fun loginBtnNavHeaderClicked(view: View) {
         if (App.prefs.isLoggedIn) {
+            channelAdapter.notifyDataSetChanged()
+            messageAdapter.notifyDataSetChanged()
             UserDataService.logout()
             resetNavHeaderLayout()
         } else {
@@ -225,6 +232,11 @@ class MainActivity : AppCompatActivity() {
         channelAdapter =
             ArrayAdapter(this, android.R.layout.simple_list_item_1, MessageService.channels)
         channel_list.adapter = channelAdapter
+
+        messageAdapter = MessageAdapter(this, MessageService.messages)
+        messageListView.adapter = messageAdapter
+        val layoutManager = LinearLayoutManager(this)
+        messageListView.layoutManager = layoutManager
     }
 
     fun updateWithChannel() {
@@ -232,8 +244,10 @@ class MainActivity : AppCompatActivity() {
         if (selectedChannel != null) {
             MessageService.getMessages(selectedChannel!!.id) { completed ->
                 if (completed) {
-                    for (message in MessageService.messages) {
-                        println(message)
+                    messageAdapter.notifyDataSetChanged()
+                    //scroll to the last message
+                    if (messageAdapter.itemCount > 0) {
+                        messageListView.smoothScrollToPosition(messageAdapter.itemCount - 1)
                     }
                 }
             }
