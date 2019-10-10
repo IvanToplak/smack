@@ -23,6 +23,7 @@ object MessageService {
 
         val channelsRequest = object : JsonArrayRequest(Method.GET, URL_GET_CHANNELS, null,
             Response.Listener { response ->
+                clearChannels()
                 try {
                     //TODO use GSON or Jackson to deserialize JSON
                     for (i in 0 until response.length()) {
