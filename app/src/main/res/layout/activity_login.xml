@@ -14,12 +14,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="email"
-        android:inputType="textPersonName"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/loginPasswordTxt"
@@ -29,12 +30,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmailTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailTxt"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/loginLoginBtn"
@@ -45,7 +47,7 @@
         android:layout_marginEnd="32dp"
         android:background="@color/colorPrimary"
         android:onClick="loginLoginBtnClicked"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +62,7 @@
         android:layout_marginEnd="32dp"
         android:background="@color/colorPrimary"
         android:onClick="loginCreateUserBtnClicked"
-        android:text="Sign up here"
+        android:text="@string/sign_up_here"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +86,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
-        android:text="Don't have an account?"
+        android:text="@string/don_t_have_an_account"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

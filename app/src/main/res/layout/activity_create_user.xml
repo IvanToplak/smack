@@ -15,7 +15,7 @@
         android:layout_marginEnd="32dp"
         android:background="@color/colorPrimary"
         android:onClick="generateBackgroundColorBtnClicked"
-        android:text="Generate background color"
+        android:text="@string/generate_background_color"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:onClick="createUserBtnClicked"
-        android:text="Create user"
+        android:text="@string/create_user"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,13 +46,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserEmailTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/createUserEmailTxt"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/createUserUserNameTxt"
@@ -62,13 +63,14 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="user name"
+        android:hint="@string/user_name"
         android:inputType="textPersonName"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/createUserEmailTxt"
@@ -78,13 +80,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="email"
-        android:inputType="textPersonName"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserUserNameTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/createUserUserNameTxt"
+        android:importantForAutofill="no" />
 
     <ImageView
         android:id="@+id/createUserAvatarImageView"
@@ -96,14 +99,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createUserAvatarInfo"
-        app:srcCompat="@drawable/profiledefault" />
+        app:srcCompat="@drawable/profiledefault"
+        android:contentDescription="@string/avatar" />
 
     <TextView
         android:id="@+id/createUserAvatarInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Tap to generate user avatar"
+        android:text="@string/tap_to_generate_user_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

@@ -31,7 +31,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintStart_toEndOf="@+id/userImageNavHeader"
         app:layout_constraintTop_toTopOf="@+id/userImageNavHeader"
-        tools:text="itoplak" />
+        tools:text="@string/itoplak" />
 
     <TextView
         android:id="@+id/userEmailNavHeader"
@@ -51,7 +51,7 @@
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:onClick="loginBtnNavHeaderClicked"
-        android:text="Login"
+        android:text="@string/login"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,6 +69,7 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/addchannelbutton" />
+        app:srcCompat="@drawable/addchannelbutton"
+        android:contentDescription="@string/create_new_channel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
