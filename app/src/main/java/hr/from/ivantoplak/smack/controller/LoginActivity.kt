@@ -3,13 +3,13 @@ package hr.from.ivantoplak.smack.controller
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import hr.from.ivantoplak.smack.R
 import hr.from.ivantoplak.smack.services.AuthService
-import hr.from.ivantoplak.smack.utils.MAKE_SURE_EMAIL_AND_PASSWORD_ARE_FILLED_IN
 import hr.from.ivantoplak.smack.utils.errorToast
 import hr.from.ivantoplak.smack.utils.hideKeyboard
+import hr.from.ivantoplak.smack.utils.validateEmail
+import hr.from.ivantoplak.smack.utils.validatePassword
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -26,13 +26,10 @@ class LoginActivity : AppCompatActivity() {
         val email = loginEmailTxt.text.toString()
         val password = loginPasswordTxt.text.toString()
 
-        //TODO - validate email and password
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(
-                this,
-                MAKE_SURE_EMAIL_AND_PASSWORD_ARE_FILLED_IN,
-                Toast.LENGTH_LONG
-            ).show()
+        //email and password validation
+        if ((!validateEmail(this, loginEmailTxt))
+                .or(!validatePassword(this, loginPasswordTxt))
+        ) {
             enableSpinner(false)
             return
         }

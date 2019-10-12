@@ -1,9 +1,6 @@
 package hr.from.ivantoplak.smack.controller
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -52,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                         UserDataService.avatarColor
                     )
                 )
-                loginBtnNavHeader.text = LOGOUT
+                loginBtnNavHeader.text = getString(R.string.logout)
 
                 //get channels and show them in the list view
                 MessageService.getChannels { completed ->
@@ -147,6 +144,9 @@ class MainActivity : AppCompatActivity() {
 
         if (App.prefs.isLoggedIn) {
             AuthService.findUserByEmail(this) { }
+        } else {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
         }
     }
 
@@ -181,20 +181,27 @@ class MainActivity : AppCompatActivity() {
         if (App.prefs.isLoggedIn) {
             val builder = AlertDialog.Builder(this)
             val dialogView = layoutInflater.inflate(R.layout.add_channel_dialog, null)
-            builder.setView(dialogView)
-                .setPositiveButton(ADD) { _, _ ->
-                    val nameTextField = dialogView.findViewById<EditText>(R.id.addChannelNameTxt)
-                    val descTextField =
-                        dialogView.findViewById<EditText>(R.id.addChannelDescriptionTxt)
-                    val channelName = nameTextField.text.toString()
-                    val channelDesc = descTextField.text.toString()
+            val dialog = builder.setView(dialogView)
+                .setPositiveButton(getString(R.string.add)) { _, _ ->
+                    //this is empty because EditText validation doesn't work here
+                }
+                .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                }.create()
+            dialog.show()
+            val addBtn = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
+            addBtn.setOnClickListener {
+                val nameTextField = dialogView.findViewById<EditText>(R.id.addChannelNameTxt)
+                val descTextField =
+                    dialogView.findViewById<EditText>(R.id.addChannelDescriptionTxt)
+                val channelName = nameTextField.text.toString()
+                val channelDesc = descTextField.text.toString()
 
+                if (validateChannelName(this, nameTextField)) {
                     //create channel
                     socket.emit(NEW_CHANNEL, channelName, channelDesc)
+                    dialog.dismiss()
                 }
-                .setNegativeButton(CANCEL) { _, _ ->
-                }
-                .show()
+            }
         }
     }
 
@@ -223,9 +230,9 @@ class MainActivity : AppCompatActivity() {
         userEmailNavHeader.text = ""
         userImageNavHeader.setImageResource(R.drawable.profiledefault)
         userImageNavHeader.setBackgroundColor(Color.TRANSPARENT)
-        loginBtnNavHeader.text = LOGIN
+        loginBtnNavHeader.text = getString(R.string.login)
         channelAdapter.clear()
-        mainChannelName.text = PLEASE_LOG_IN
+        mainChannelName.text = getString(R.string.please_log_in)
     }
 
     private fun setupAdapters() {

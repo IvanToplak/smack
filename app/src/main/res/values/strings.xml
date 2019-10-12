@@ -37,4 +37,12 @@
     <string name="something_went_wrong_please_try_again">Something went wrong, please try again.</string>
     <string name="make_sure_user_name_email_and_password_are_filled_in">Make sure user name, email, and password are filled in.</string>
     <string name="make_sure_email_and_password_are_filled_in">"Make sure email and password are filled in."</string>
+    <string name="email_address_is_required">"Email address is required."</string>
+    <string name="enter_valid_email_address">"Enter valid email address."</string>
+    <string name="password_is_required">"Password is required."</string>
+    <string name="enter_valid_password">"Enter valid password (at least 8 characters: digits, uppercase and lowercase letters, and special character, no white space)."</string>
+    <string name="username_is_required">"Username is required."</string>
+    <string name="username_is_too_long">"Username is too long (max. 20 characters)."</string>
+    <string name="channel_name_is_required">"Channel name is required."</string>
+    <string name="channel_name_is_too_long">"Channel name is too long (max. 30 characters)."</string>
 </resources>

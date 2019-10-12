@@ -24,9 +24,10 @@
         android:layout_marginBottom="18dp"
         android:ems="10"
         android:hint="@string/channel_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        android:importantForAutofill="no" />
+        android:maxLength="30"
+        android:textColor="@android:color/darker_gray" />
 
     <EditText
         android:id="@+id/addChannelDescriptionTxt"
@@ -37,8 +38,9 @@
         android:layout_marginBottom="18dp"
         android:ems="10"
         android:hint="@string/channel_description"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        android:importantForAutofill="no" />
+        android:maxLength="100"
+        android:textColor="@android:color/darker_gray" />
 
 </LinearLayout>

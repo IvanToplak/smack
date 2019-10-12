@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import hr.from.ivantoplak.smack.R
@@ -54,13 +53,11 @@ class CreateUserActivity : AppCompatActivity() {
         val email = createUserEmailTxt.text.toString()
         val password = createUserPasswordTxt.text.toString()
 
-        //TODO - add validation for email and password
-        if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(
-                this,
-                MAKE_SURE_USER_NAME_EMAIL_AND_PASSWORD_ARE_FILLED_IN,
-                Toast.LENGTH_LONG
-            ).show()
+        //username, email and password validation
+        if ((!validateUserName(this, createUserUserNameTxt))
+                .or(!validateEmail(this, createUserEmailTxt))
+                .or(!validatePassword(this, createUserPasswordTxt))
+        ) {
             enableSpinner(false)
             return
         }

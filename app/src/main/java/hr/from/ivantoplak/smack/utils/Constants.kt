@@ -1,7 +1,5 @@
 package hr.from.ivantoplak.smack.utils
 
-import hr.from.ivantoplak.smack.R
-
 const val AVATAR_MIN = 0
 const val AVATAR_MAX = 27
 const val COLOR_MIN = 0
@@ -17,13 +15,6 @@ const val AUTHORIZATION = "Authorization"
 const val BEARER = "Bearer"
 const val ISO_DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 const val CUSTOM_DATE_TIME_PATTERN = "E, h:mm a"
-
-//Text labels
-const val PLEASE_LOG_IN = R.string.please_log_in
-const val LOGOUT = R.string.logout
-const val LOGIN = R.string.login
-const val ADD = R.string.add
-const val CANCEL = R.string.cancel
 
 //API URLs
 const val BASE_URL = "https://it-smack-chat.herokuapp.com/v1/"
@@ -66,11 +57,6 @@ const val COULD_NOT_ADD_USER = "Could not add user."
 const val COULD_NOT_FIND_USER = "Could not find user."
 const val COULD_NOT_FIND_CHANNELS = "Could not find channels."
 const val CANNOT_PARSE_DATE = "Cannot parse date."
-
-//Validation messages - displayed to users
-const val SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN = R.string.something_went_wrong_please_try_again
-const val MAKE_SURE_USER_NAME_EMAIL_AND_PASSWORD_ARE_FILLED_IN = R.string.make_sure_user_name_email_and_password_are_filled_in
-const val MAKE_SURE_EMAIL_AND_PASSWORD_ARE_FILLED_IN = R.string.make_sure_email_and_password_are_filled_in
 
 //Socket Constants
 const val CHANNEL_CREATED = "channelCreated"

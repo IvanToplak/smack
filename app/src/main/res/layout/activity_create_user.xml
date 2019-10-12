@@ -64,13 +64,14 @@
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="@string/user_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:maxLength="20"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/createUserEmailTxt"

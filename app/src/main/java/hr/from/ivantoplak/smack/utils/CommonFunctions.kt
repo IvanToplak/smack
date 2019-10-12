@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import hr.from.ivantoplak.smack.R
 
 /**
  * Shows toast error message to the user.
@@ -12,7 +13,7 @@ import android.widget.Toast
  */
 fun errorToast(context: Context) {
     Toast.makeText(
-        context, SOMETHING_WENT_WRONG_PLEASE_TRY_AGAIN,
+        context, context.getString(R.string.something_went_wrong_please_try_again),
         Toast.LENGTH_LONG
     ).show()
 }
